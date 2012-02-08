@@ -17,30 +17,17 @@ Jeweler::Tasks.new do |gem|
   gem.name = "abraxas"
   gem.homepage = "http://github.com/chroniton/abraxas"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Transmit data to statsd... with darkness.}
+  gem.description = %Q{Send statsd counter and timer data to statsd via UDP. Also supports TCP logging directly to a graphing backend.}
   gem.email = "jason@wistia.com"
   gem.authors = ["Jason Lawrence"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
-
-task :default => :test
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+task :default  => :spec
 
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
